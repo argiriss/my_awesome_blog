@@ -28,3 +28,5 @@ group :test do
   gem "selenium-webdriver", ">= 4.0.0.rc1"
   gem "webdrivers"
 end
+
+gem "devise"
