@@ -30,3 +30,9 @@ group :test do
 end
 
 gem "devise"
+gem "omniauth-facebook"
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "carrierwave"
+gem "mini_magick"
+gem "figaro"
