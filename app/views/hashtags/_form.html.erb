@@ -1,0 +1,27 @@
+<%= form_with(model: hashtag) do |form| %>
+  <% if hashtag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hashtag.errors.count, "error") %> prohibited this hashtag from being saved:</h2>
+
+      <ul>
+        <% hashtag.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_id %>
+    <%= form.text_field :post_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
