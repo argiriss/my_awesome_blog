@@ -1,11 +1,11 @@
 <div class="col-md-4">
-  <%= link_to(user) do %>
-    <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;">
+    <%= link_to user do %>
       <%= image_tag user.image_url || "default_profile_image.jpeg", class: "card-img-top" %>
-      <div class="card-body">
-        <h5 class="card-title"><%= user.name %></h5>
-        <p class="card-text">Number of posts: <%= user.posts.size %></p>
-      </div>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to user.name, user %></h5>
+      <p class="card-text">Number of posts: <%= link_to user.posts.size, posts_url(user_id: user.id) %></p>
     </div>
-  <% end %>
+  </div>
 </div>

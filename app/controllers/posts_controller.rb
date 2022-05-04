@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:user, :hashtags)
+    @posts = @posts.where(user_id: params[:user_id]) if params[:user_id].present?
   end
 
   def show

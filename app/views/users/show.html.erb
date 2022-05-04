@@ -1,1 +1,6 @@
-<h1><%= @user.email %></h1>
+<%= image_tag @user.image_url || "default_profile_image.jpeg" %>
+<h1><%= @user.name %>'s Posts</h1>
+
+<div class="row">
+  <%= render @user.posts %>
+</div>

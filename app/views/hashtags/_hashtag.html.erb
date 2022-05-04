@@ -1,3 +1,6 @@
 <div class="col-md-12">
-  <%= hashtag.title %> : (<%= @hashtags_by_title[hashtag.title] %>)
+  <%= hashtag.title %>
+  <% if @hashtags_by_title.present? %>
+    (<%= @hashtags_by_title[hashtag.title] %>)
+  <% end %> 
 </div>
