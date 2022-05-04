@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_user_image
-    current_user.blank? || current_user.image.nil? ? 'default_profile_image.jpeg' : current_user.image_url
+    current_user.blank? || current_user.image.blank? ? 'default_profile_image.jpeg' : current_user.image_url
   end
 
   def login_helper

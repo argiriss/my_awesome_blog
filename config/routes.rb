@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :hashtags
   resources :posts
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
 end
