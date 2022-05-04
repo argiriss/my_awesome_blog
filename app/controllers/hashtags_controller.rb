@@ -3,6 +3,7 @@ class HashtagsController < ApplicationController
 
   def index
     @hashtags = Hashtag.all
+    @hashtags_by_title = @hashtags.group(:title).size
   end
 
   def new
