@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1>Posts <%= link_to "Create a Post", new_post_path, class: "btn btn-success" %></h1>
 
 <div class="row">
   <%= render @posts %>
