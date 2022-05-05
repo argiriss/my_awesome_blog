@@ -10,10 +10,14 @@
   <%= @post.body %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @post.image_url %>
-</p>
+<%- if @post.image_url.present? %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @post.image_url %>
+  </p>
+<% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<p><small>Hashtags: <%= raw @post.hashtags.map(&:title).map { |t| link_to t, posts_path(hashtag: t) }.join(', ') %></small></p>
+
+<%= link_to "Edit", edit_post_path(@post) %> |
+<%= link_to "Back", posts_path %>

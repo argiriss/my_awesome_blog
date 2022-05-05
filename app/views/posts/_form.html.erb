@@ -1,4 +1,4 @@
-<%= form_with(model: post) do |form| %>
+<%= simple_form_for @post, url: posts_path do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -29,15 +29,8 @@
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="col-md-12">
-    <h2>Hashtags Used:</h2>
-    <div>
-      <%= form.fields_for :hashtags do |hashtag_form| %>
-        <%= render "hashtag_fields", f: hashtag_form %>
-      <% end %>
-      <div>
-        <%= link_to_add_association "Add hashtag", form, :hashtags %>
-      </div>
-    </div>
+    <%= form.select :hashtag_ids, options_from_collection_for_select(Hashtag.order(:title), "post_form_attribute", "title"), {include_blank: true, required: false, include_hidden: false}, class: 'select2 form-control', multiple: 'multiple' %>
+  </div>
 
   <div class="form-group">
     <%= form.submit class: "btn btn-primary" %>

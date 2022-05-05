@@ -10,7 +10,7 @@ import "channels"
 require("@popperjs/core")
 require("jquery")
 import "bootstrap"
-require("@nathanvda/cocoon")
+require("packs/select2setup")
 
 Rails.start()
 Turbolinks.start()

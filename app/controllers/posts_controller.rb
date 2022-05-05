@@ -1,9 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :create_new_hashtags, only: [:create, :update]
 
   def index
-    @posts = Post.all.includes(:user, :hashtags)
+    @posts = Post.all.includes(:user, :hashtags, :taggings)
     @posts = @posts.where(user_id: params[:user_id]) if params[:user_id].present?
+    if params[:hashtag].present?
+      @hashtag_ids = Hashtag.where(title: params[:hashtag])
+      @posts = @posts.where(id: Tagging.where(hashtag_id: @hashtag_ids))
+    end
   end
 
   def show
@@ -18,7 +23,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
@@ -56,7 +60,22 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def create_new_hashtags
+      if params[:post][:hashtag_ids].present?
+        params[:post][:hashtag_ids].each_with_index do |hashtag_id, index|
+          if hashtag_id.starts_with?("existing-hashtag-")
+            params[:post][:hashtag_ids][index] = hashtag_id.gsub("existing-hashtag-","")
+          else
+            if Hashtag.find_by(id: hashtag_id).blank?
+              new_hashtag = Hashtag.create(title: hashtag_id)
+              params[:post][:hashtag_ids][index] = new_hashtag.id.to_s
+            end
+          end
+        end
+      end
+    end
+
     def post_params
-      params.require(:post).permit(:title, :body, :image, :user_id, hashtags_attributes: [:id, :title, :_destroy])
+      params.require(:post).permit(:title, :body, :image, :user_id, { hashtag_ids: [] }, :hashtag_ids)
     end
 end
