@@ -2,8 +2,7 @@ class HashtagsController < ApplicationController
   before_action :set_hashtag, only: %i[ show destroy ]
 
   def index
-    @hashtags = Hashtag.all
-    @hashtags_by_title = @hashtags.group(:title).size
+    @hashtags = Hashtag.all.includes(:taggings)
   end
 
   def new

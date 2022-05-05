@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <%= hashtag.title %>
-  <% if @hashtags_by_title.present? %>
-    (<%= link_to @hashtags_by_title[hashtag.title], posts_path(hashtag: hashtag.title) %>)
+  <% if params[:controller] == "hashtags" %>
+    (<%= link_to hashtag.taggings.size, posts_path(hashtag: hashtag.title) %>)
   <% end %> 
 </div>

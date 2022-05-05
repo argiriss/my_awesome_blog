@@ -6,8 +6,9 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user, :hashtags, :taggings)
     @posts = @posts.where(user_id: params[:user_id]) if params[:user_id].present?
     if params[:hashtag].present?
-      @hashtag_ids = Hashtag.where(title: params[:hashtag])
-      @posts = @posts.where(id: Tagging.where(hashtag_id: @hashtag_ids))
+      @hashtag_id = Hashtag.find_by(title: params[:hashtag]).id
+      @tagging_ids = Tagging.where(hashtag_id: @hashtag_id)
+      @posts = @tagging_ids.map(&:post)
     end
   end
 
