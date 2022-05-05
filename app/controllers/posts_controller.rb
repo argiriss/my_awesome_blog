@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :create_new_hashtags, only: [:create, :update]
+  before_action :authenticate_user!, only: %i[ new create destroy ]
 
   def index
     @posts = Post.all.includes(:user, :hashtags, :taggings)
