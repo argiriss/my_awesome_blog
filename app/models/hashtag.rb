@@ -3,6 +3,6 @@ class Hashtag < ApplicationRecord
   has_many :posts, through: :taggings
 
   def post_form_attribute
-    "existing-hashtag-" + "#{id}"
+    ENV["existing_hashtag_secure_uuid"] + "#{id}"
   end
 end

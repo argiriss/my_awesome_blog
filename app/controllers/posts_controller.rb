@@ -65,8 +65,8 @@ class PostsController < ApplicationController
     def create_new_hashtags
       if params[:post][:hashtag_ids].present?
         params[:post][:hashtag_ids].each_with_index do |hashtag_id, index|
-          if hashtag_id.starts_with?("existing-hashtag-")
-            params[:post][:hashtag_ids][index] = hashtag_id.gsub("existing-hashtag-","")
+          if hashtag_id.starts_with?(ENV["existing_hashtag_secure_uuid"])
+            params[:post][:hashtag_ids][index] = hashtag_id.gsub(ENV["existing_hashtag_secure_uuid"],"")
           else
             if Hashtag.find_by(id: hashtag_id).blank?
               new_hashtag = Hashtag.create(title: hashtag_id)
