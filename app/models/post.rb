@@ -6,4 +6,6 @@ class Post < ApplicationRecord
                                 allow_destroy: true
   
   mount_uploader :image, ImageUploader
+
+  validates_presence_of :title, :body, :image
 end
