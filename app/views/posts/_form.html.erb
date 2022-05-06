@@ -11,17 +11,15 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group mb-4">
+    <%= form.text_field :title, class: "form-control", placeholder: "Title *" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="form-group mb-4">
+    <%= form.text_area :body, class: "form-control", placeholder: "Body *" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mb-4">
     <%= form.label :image %>
     <%= form.file_field :image %>
   </div>
@@ -29,10 +27,12 @@
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="col-md-12">
-    <%= form.select :hashtag_ids, options_from_collection_for_select(Hashtag.order(:title), "post_form_attribute", "title"), {include_blank: true, required: false, include_hidden: false}, class: 'select2 form-control', multiple: 'multiple' %>
+    <%= form.select :hashtag_ids, options_from_collection_for_select(Hashtag.order(:title), 
+    "post_form_attribute", "title"), { include_blank: true, required: false, include_hidden: false }, 
+    class: "form-group mb-4", multiple: "multiple" %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mt-4">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
