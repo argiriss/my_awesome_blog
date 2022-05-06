@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :taggings
-  has_many :hashtags, through: :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :hashtags, through: :taggings, dependent: :destroy
   
   mount_uploader :image, ImageUploader
 
