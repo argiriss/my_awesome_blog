@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
+  validates_presence_of :image
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
