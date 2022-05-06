@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<h1 class="text-center"><%= @post.title %></h1>
 
 <%- if @post.image_url.present? %>
-  <p>
-    <strong>Image:</strong>
-    <%= image_tag @post.image_url %>
-  </p>
+  <%= image_tag @post.image_url, class: "img-fluid post-image" %>
 <% end %>
 
-<p><small>Hashtags: <%= raw @post.hashtags.map(&:title).map { |t| link_to t, posts_path(hashtag: t) }.join(', ') %></small></p>
+<p class="mt-2 mb-2">
+  <small>
+    Hashtags: <%= raw @post.hashtags.map(&:title)
+    .map { |hashtag| link_to hashtag, posts_path(hashtag: hashtag) }.join(", ") %>
+  </small>
+</p>
 
-<%= link_to "Edit", edit_post_path(@post) %> |
-<%= link_to "Back", posts_path %>
+<p>
+  <%= @post.body.html_safe %>
+</p>
+
+<%- if current_user.present? %>
+  <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary" %>
+  <%= link_to "Destroy", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<% end %>
