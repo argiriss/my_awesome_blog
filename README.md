@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Installation Instructions
 
-Things you may want to cover:
+* Clone project locally (ssh git@github.com:argiriss/my_awesome_blog.git)
+* Install ruby version (2.7.1)
+* Bundle Install (bundle install)
+* Create database (rails db:create)
+* Run database migrations (rails db:migrate)
+* Run Ruby on Rails app (rails s)
+* View the app with any browser on http://localhost:3000/
+* Enjoy uploading and reading other people posts!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app is temporarily live at https://obscure-cliffs-25284.herokuapp.com/ as it was deployed using Heroku
