@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= link_to post.title, post %></h5> posted by <%= link_to post.user.name, post.user %>
       <p class="card-text"><%= post.body.html_safe %></p>
-      <p><small>Hashtags: <%= raw post.hashtags.map(&:title).map { |hashtag| link_to hashtag, posts_path(hashtag: hashtag) }.join(', ') %></small></p>
+      <p><small>Hashtags: <%= raw post.hashtags.map(&:title).map { |hashtag| link_to hashtag, posts_path(hashtag: hashtag) }.join(", ") %></small></p>
       <%- if post.user == current_user %>
         <%= link_to "Show", post %>
         <%= link_to "Edit", edit_post_path(post) %>

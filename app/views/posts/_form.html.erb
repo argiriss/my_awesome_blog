@@ -26,11 +26,9 @@
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div class="col-md-12">
-    <%= form.select :hashtag_ids, options_from_collection_for_select(Hashtag.order(:title), 
-    "post_form_attribute", "title"), { include_blank: true, required: false, include_hidden: false }, 
-    class: "form-group mb-4", multiple: "multiple" %>
-  </div>
+  <%= form.select :hashtag_ids, options_from_collection_for_select(Hashtag.order(:title), 
+  "post_form_attribute", "title"), { include_blank: true, required: false, include_hidden: false }, 
+  class: "form-control mb-4", multiple: "multiple" %>
 
   <div class="form-group mt-4">
     <%= form.submit class: "btn btn-primary" %>
