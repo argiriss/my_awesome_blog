@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="card" style="width: 18rem;">
     <%= link_to user do %>
-      <%= image_tag user.image_url || "default_profile_image.jpeg", class: "card-img-top" %>
+      <%= image_tag user.image_url || default_profile_image_url, class: "card-img-top" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= link_to user.name, user %></h5>
