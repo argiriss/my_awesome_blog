@@ -1,6 +1,6 @@
 <div class="col-md-12">
-  <%= hashtag.title %>
+  <%= link_to hashtag.title, posts_path(hashtag: hashtag.title)%>
   <% if params[:controller] == "hashtags" %>
-    (<%= link_to hashtag.taggings.size, posts_path(hashtag: hashtag.title) %>)
+    (<%= hashtag.taggings.size %>)
   <% end %> 
 </div>
