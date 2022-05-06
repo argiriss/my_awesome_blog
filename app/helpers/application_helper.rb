@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def default_profile_image_url
-    "default_profile_image.jpeg"
+    "default_profile_image.jpg"
   end
 
   def login_helper
